@@ -2,8 +2,9 @@ var options = ["Sofia", "Plovdid", "Burgas", "Velingrad", "Veliko Turnovo", "Var
 var choice = options[Math.floor(Math.random()*options.length)]
 console.log(choice)
 
+var lives = 5
 
-var uncovered = ''
+var  uncovered = ''
 for(let i = 0; i < choice.length; i ++){
     if(choice[i] == ' '){
         uncovered += ' '
@@ -15,11 +16,17 @@ for(let i = 0; i < choice.length; i ++){
 $('h1').text(uncovered)
 
 $("button").on( "click", ()=>{
-    let guess = $('input').val()
+    let guess = $('input').val() + ''
     
-    for(let i = 0 ;i < choice.length; i ++){
-        if(guess === choice[i]){
-            uncovered
+    let flag = false;
+
+    for(let j = 0; j < choice.length; j ++){
+        if(choice[j] == guess){
+            uncovered = uncovered.substring(0, j) + guess + uncovered.substring(j + 1);
+            $('h1').text(uncovered)
+
+            flag = true
         }
     }
+
 });
